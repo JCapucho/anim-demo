@@ -1,0 +1,11 @@
+F:\Programing\animation-demo\animations\target\release\deps\proc_macro2-ccbb3ba3f7043924.rmeta: C:\Users\Tyutyu22\.cargo\registry\src\github.com-1ecc6299db9ec823\proc-macro2-1.0.17\src\lib.rs C:\Users\Tyutyu22\.cargo\registry\src\github.com-1ecc6299db9ec823\proc-macro2-1.0.17\src\parse.rs C:\Users\Tyutyu22\.cargo\registry\src\github.com-1ecc6299db9ec823\proc-macro2-1.0.17\src\detection.rs C:\Users\Tyutyu22\.cargo\registry\src\github.com-1ecc6299db9ec823\proc-macro2-1.0.17\src\fallback.rs C:\Users\Tyutyu22\.cargo\registry\src\github.com-1ecc6299db9ec823\proc-macro2-1.0.17\src\wrapper.rs
+
+F:\Programing\animation-demo\animations\target\release\deps\libproc_macro2-ccbb3ba3f7043924.rlib: C:\Users\Tyutyu22\.cargo\registry\src\github.com-1ecc6299db9ec823\proc-macro2-1.0.17\src\lib.rs C:\Users\Tyutyu22\.cargo\registry\src\github.com-1ecc6299db9ec823\proc-macro2-1.0.17\src\parse.rs C:\Users\Tyutyu22\.cargo\registry\src\github.com-1ecc6299db9ec823\proc-macro2-1.0.17\src\detection.rs C:\Users\Tyutyu22\.cargo\registry\src\github.com-1ecc6299db9ec823\proc-macro2-1.0.17\src\fallback.rs C:\Users\Tyutyu22\.cargo\registry\src\github.com-1ecc6299db9ec823\proc-macro2-1.0.17\src\wrapper.rs
+
+F:\Programing\animation-demo\animations\target\release\deps\proc_macro2-ccbb3ba3f7043924.d: C:\Users\Tyutyu22\.cargo\registry\src\github.com-1ecc6299db9ec823\proc-macro2-1.0.17\src\lib.rs C:\Users\Tyutyu22\.cargo\registry\src\github.com-1ecc6299db9ec823\proc-macro2-1.0.17\src\parse.rs C:\Users\Tyutyu22\.cargo\registry\src\github.com-1ecc6299db9ec823\proc-macro2-1.0.17\src\detection.rs C:\Users\Tyutyu22\.cargo\registry\src\github.com-1ecc6299db9ec823\proc-macro2-1.0.17\src\fallback.rs C:\Users\Tyutyu22\.cargo\registry\src\github.com-1ecc6299db9ec823\proc-macro2-1.0.17\src\wrapper.rs
+
+C:\Users\Tyutyu22\.cargo\registry\src\github.com-1ecc6299db9ec823\proc-macro2-1.0.17\src\lib.rs:
+C:\Users\Tyutyu22\.cargo\registry\src\github.com-1ecc6299db9ec823\proc-macro2-1.0.17\src\parse.rs:
+C:\Users\Tyutyu22\.cargo\registry\src\github.com-1ecc6299db9ec823\proc-macro2-1.0.17\src\detection.rs:
+C:\Users\Tyutyu22\.cargo\registry\src\github.com-1ecc6299db9ec823\proc-macro2-1.0.17\src\fallback.rs:
+C:\Users\Tyutyu22\.cargo\registry\src\github.com-1ecc6299db9ec823\proc-macro2-1.0.17\src\wrapper.rs:
