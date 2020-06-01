@@ -209,11 +209,9 @@ pub struct SkeletonAttr {
 
 #[derive(Debug, Serialize, Deserialize, Default)]
 #[repr(C)]
-pub struct SkeletonPassTrough<S: Skeleton, Dep: Serialize> {
+pub struct AnimationPassTrough<S: Skeleton, Dep: Serialize> {
     pub dependency: Dep,
     pub skeleton: S,
     pub attr: S::Attr,
+    pub rate: f32,
 }
-
-#[derive(Debug, Copy, Clone, Serialize, Deserialize)]
-pub struct AnimReturn<S>(pub S, pub f32);

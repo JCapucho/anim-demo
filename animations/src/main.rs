@@ -3,7 +3,7 @@
 #[global_allocator]
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
-use common::{CharacterSkeleton, Metadata, SkeletonPassTrough, SkeletonTy};
+use common::{AnimationPassTrough, CharacterSkeleton, Metadata, SkeletonTy};
 use std::f32::consts::PI;
 use vek::*;
 
@@ -32,15 +32,13 @@ extern "C" fn metadata() -> *const u8 {
 }
 
 #[no_mangle]
-extern "C" fn character_idle(anim_time: f64, mut rate: f32) -> *const u8 {
+extern "C" fn character_idle(anim_time: f64) -> *const u8 {
     let ptr = get_staging_buffer_ptr();
-    let staging = unsafe { std::slice::from_raw_parts_mut::<u8>(ptr, 2048) };
-    let pass_trough =
-        bincode::deserialize_from::<_, SkeletonPassTrough<CharacterSkeleton, f64>>(&*staging)
-            .unwrap();
+    let pass_trough: &mut AnimationPassTrough<CharacterSkeleton, f64> =
+        unsafe { &mut *(ptr as *mut AnimationPassTrough<CharacterSkeleton, f64>) };
 
-    let mut next = pass_trough.skeleton;
-    let skeleton_attr = pass_trough.attr;
+    let next = &mut pass_trough.skeleton;
+    let skeleton_attr = &pass_trough.attr;
     let global_time = pass_trough.dependency;
 
     let wave_ultra_slow = (anim_time as f32 * 1.0).sin();
@@ -157,9 +155,6 @@ extern "C" fn character_idle(anim_time: f64, mut rate: f32) -> *const u8 {
     next.r_control.offset = Vec3::new(0.0, 0.0, 0.0);
     next.r_control.ori = Quaternion::rotation_x(0.0);
     next.r_control.scale = Vec3::one();
-
-    let ret = common::AnimReturn(next, rate);
-    bincode::serialize_into(staging, &ret).unwrap();
 
     ptr
 }

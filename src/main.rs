@@ -1,3 +1,4 @@
+use common::*;
 use wasmtime::*;
 
 fn main() {
@@ -37,7 +38,6 @@ fn main() {
         let staging = unsafe { &memory.data_unchecked()[ptr..ptr + 2048] };
         bincode::deserialize_from(staging).unwrap()
     };
-    println!("{:#?}", metadata);
 
     println!(
         "Get metadata: {}",
@@ -46,29 +46,35 @@ fn main() {
             .as_secs_f64()
     );
 
+    println!("{:#?}", metadata);
+
     let before = std::time::Instant::now();
     let character_idle_func = instance
         .get_func("character_idle")
         .expect("failed to find `character_idle` export")
-        .get2::<f64, f32, i32>()
+        .get1::<f64, i32>()
         .unwrap();
 
-    {
-        let ptr = get_staging_buffer_ptr_func().unwrap() as usize;
-        let staging = unsafe { &mut memory.data_unchecked_mut()[ptr..ptr + 2048] };
-        bincode::serialize_into(
-            staging,
-            &common::SkeletonPassTrough::<common::CharacterSkeleton, f64>::default(),
-        )
-        .unwrap()
+    unsafe {
+        let ptr = get_staging_buffer_ptr_func().unwrap() as isize;
+        let data =
+            memory.data_ptr().offset(ptr) as *mut AnimationPassTrough<CharacterSkeleton, f64>;
+
+        data.write(AnimationPassTrough {
+            dependency: 0.0,
+            skeleton: Default::default(),
+            attr: Default::default(),
+            rate: 3.5,
+        });
     }
 
-    let ret = {
-        let ret = character_idle_func(0.0, 3.5).unwrap();
-        let ptr = ret as usize;
-        let staging = unsafe { &memory.data_unchecked()[ptr..ptr + 2048] };
-        bincode::deserialize_from::<_, common::AnimReturn<common::CharacterSkeleton>>(staging)
-            .unwrap()
+    let ret = unsafe {
+        let ret = character_idle_func(0.0).unwrap();
+        let ptr = ret as isize;
+        let data =
+            memory.data_ptr().offset(ptr) as *mut AnimationPassTrough<CharacterSkeleton, f64>;
+
+        data.read()
     };
 
     println!(
@@ -78,5 +84,5 @@ fn main() {
             .as_secs_f64()
     );
 
-    println!("{:#?} {}", ret.0, ret.1);
+    println!("{:#?}", ret);
 }
